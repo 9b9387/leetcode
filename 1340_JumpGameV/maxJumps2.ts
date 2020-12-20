@@ -9,6 +9,7 @@ function maxJumps(arr: number[], d: number): number {
         }
 
         seen.set(pos, 1);
+        
         let i : number = pos - 1;
         while (i >= 0 && pos - i <= d && arr[pos] > arr[i])
         {
@@ -16,6 +17,7 @@ function maxJumps(arr: number[], d: number): number {
             seen.set(pos, Math.max(seen.get(pos) as number, seen.get(i) as number + 1));
             i -= 1;
         }
+
         i = pos + 1;
         while (i < arr.length && i - pos <= d && arr[pos] > arr[i])
         {
