@@ -1,6 +1,6 @@
 import 'mocha';
 import { assert } from 'chai';
-import {maxJumps} from './maxJumps';
+import {maxJumps} from './maxJumps2';
 
 describe("1340_JumpGameV", function () {
     it("case1", function () {
