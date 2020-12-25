@@ -1,46 +1,55 @@
 function minWindow(s: string, t: string): string {
     let frequency: any = {}
     let startIndex: number = 0;
-    let length: number = 0;
-
+    let length: number = -1;
+    let count: number = 0; // 还有几种字母没找全
     for (const c of t) {
-        frequency[c] == null ? frequency[c] = 1 : frequency[c]++
-    }
-
-    var check = function() : boolean {
-        let substr = s.substr(startIndex, length);
-        for (const key in frequency) {
-            let count = 0;
-            for (let i = 0; i < substr.length; i++) {
-                const c = substr[i];
-                if(key == c)
-                {
-                    count++;
-                }
-            }
-            if(count < frequency[key])
-            {
-                return false;
-            }
-        }
-        return true;
+        if(frequency[c] == null)
+        {
+            frequency[c] = 0; 
+            count++;
+        } 
+        frequency[c]++;    
     }
 
     var minLength = 0;
     var minIndex = 0;
     while(startIndex + length <= s.length)
     {
-        while(check())
+        if(count == 0) // 全包含了
         {
-            if(length < minLength || minLength == 0)
+            // console.log(s.substr(startIndex, length));
+            if(length + 1 < minLength || minLength == 0)
             {
-                minLength = length;
+                minLength = length + 1;
                 minIndex = startIndex;
             }
+            var current = s[startIndex];
+            if(frequency[current] != null)
+            {
+                frequency[current]++;
+            }
+            if(frequency[current] > 0)
+            {
+                count++;
+            }
             length--;
-            startIndex ++;
+            startIndex++;
         }
-        length++;
+        else
+        {
+            length++;
+
+            var current = s[startIndex + length];
+            if(frequency[current] != null)
+            {
+                frequency[current]--;
+                if(frequency[current] == 0)
+                {
+                    count--;
+                }
+            }
+        }
     }
     return s.substr(minIndex, minLength);;
 };
