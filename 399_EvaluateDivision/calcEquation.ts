@@ -12,8 +12,8 @@ function calcEquation(equations: string[][], values: number[], queries: string[]
 
     let result = []
     for (let i = 0; i < queries.length; i++) {
-        var x = equations[i][0].charCodeAt(0);
-        var y = equations[i][1].charCodeAt(1);
+        var x = queries[i][0].charCodeAt(0);
+        var y = queries[i][1].charCodeAt(1);
         result.push(set.isConnected(x, y))
     }
     return result;

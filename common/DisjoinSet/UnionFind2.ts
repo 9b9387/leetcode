@@ -35,7 +35,7 @@ class UnionFind {
         let rootA = this.find(a);
         let rootB = this.find(b);
         if (rootA == rootB) {
-            return this.parent[a] / this.parent[b];
+            return this.weight[a] / this.weight[b];
         }
         return -1;
     }
