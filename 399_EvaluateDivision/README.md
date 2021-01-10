@@ -38,3 +38,7 @@ queries[i].length == 2
 1 <= Cj.length, Dj.length <= 5
 Ai, Bi, Cj, Dj consist of lower case English letters and digits.
 ---------
+思路：
+使用并查集，这个题相对于990多了权重，所以要额外计算并查操作时的权重值。
+- 题目给的key类型是字符串，通过map预处理转成number类型，然后建立并查集
+- 收集queries中的是否连通，返回对应的权值。
