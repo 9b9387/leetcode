@@ -1,10 +1,10 @@
 import { Comparator } from "../Comparator";
 
 class Heap {
-    private heapContainer: number[] = []
-    private compare: Comparator
+    protected heapContainer: number[] = []
+    protected compare: Comparator
 
-    private constructor(compareFunction: Function) {
+    protected constructor(compareFunction: Function | null) {
         this.heapContainer = [];
         this.compare = new Comparator(compareFunction);
     }
@@ -77,7 +77,7 @@ class Heap {
 
     public add(item: number) {
         this.heapContainer.push(item);
-        this.heapifyUp();
+        this.heapifyUp(this.heapContainer.length - 1);
     }
 
     public remove(item: number) {
@@ -92,6 +92,10 @@ class Heap {
         return this.heapContainer.toString();
     }
 
+    /**
+     * 
+     * @param customStartIndex 
+     */
     protected heapifyDown(customStartIndex: number = 0) {
         let currentIndex = customStartIndex;
         let nextIndex = null;
@@ -126,3 +130,5 @@ class Heap {
         throw new Error("You have to implement heap pair comarision method.");
     }
 }
+
+export { Heap }

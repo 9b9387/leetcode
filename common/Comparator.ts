@@ -1,6 +1,6 @@
 class Comparator {
     private compare: Function;
-    constructor(compareFunction: Function) {
+    constructor(compareFunction: Function | null) {
         this.compare = compareFunction || Comparator.defaultCompareFunction;
     }
 
