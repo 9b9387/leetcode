@@ -93,7 +93,8 @@ class Heap {
     }
 
     /**
-     * 
+     * 下沉操作
+     * 如果有子节点，满足条件时，交换位置。
      * @param customStartIndex 
      */
     protected heapifyDown(customStartIndex: number = 0) {
@@ -117,6 +118,11 @@ class Heap {
         }
     }
 
+    /**
+     * 上浮操作
+     * 比较当前节点，和其父节点。满足条件时，交换位置。
+     * @param customStartIndex 
+     */
     protected heapifyUp(customStartIndex: number) {
         let currentIndex = customStartIndex || this.heapContainer.length - 1;
         while (this.hasParent(currentIndex)
