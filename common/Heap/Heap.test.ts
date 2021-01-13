@@ -19,5 +19,7 @@ describe("Heap", function () {
         console.log(heap.toString())
         heap.add(11);
         console.log(heap.toString())
+        heap.remove(8);
+        console.log(heap.toString())
     });
 })

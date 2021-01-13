@@ -69,19 +69,48 @@ class Heap {
 
         const item = this.heapContainer[0];
 
-        this.heapContainer[0] = this.heapContainer.pop() as number;
+        this.heapContainer[0] = this.heapContainer.pop() as any;
         this.heapifyDown();
 
         return item;
     }
 
-    public add(item: number) {
+    public add(item: any) {
         this.heapContainer.push(item);
         this.heapifyUp(this.heapContainer.length - 1);
     }
 
-    public remove(item: number) {
-        console.log("todo: implement heap remove")
+    public remove(item: any, comparator: Comparator = this.compare) {
+        const numberOfItemsToRemove = this.find(item, comparator).length;
+
+        for (let iteration = 0; iteration < numberOfItemsToRemove; iteration++) {
+            const indexToRemove = this.find(item, comparator).pop() as number;
+            if (indexToRemove == (this.heapContainer.length - 1)) {
+                this.heapContainer.pop();
+            }
+            else {
+                this.heapContainer[indexToRemove] = this.heapContainer.pop() as number;
+                const parentItem = this.parent(indexToRemove);
+                if (this.hasLeftChild(indexToRemove)
+                    && (!parentItem || this.pairIsInCorrectOrder(parentItem, this.heapContainer[indexToRemove]))) {
+                    this.heapifyDown(indexToRemove);
+                }
+                else {
+                    this.heapifyUp(indexToRemove);
+                }
+            }
+        }
+    }
+
+    public find(item: any, comparator: Comparator = this.compare): number[] {
+        const foundItemIndices = [];
+        for (let index = 0; index < this.heapContainer.length; index++) {
+            if (comparator.equal(item, this.heapContainer[index])) {
+                foundItemIndices.push(index);
+            }
+
+        }
+        return foundItemIndices;
     }
 
     public isEmpty(): boolean {
