@@ -23,7 +23,7 @@ class UnionFind {
         }
     }
 
-    private find(i: number) : number
+    public find(i: number) : number
     {
         if(this.parent[i] != i)
         {   
@@ -42,7 +42,6 @@ class UnionFind {
         }
         return false;
     }
-
 }
 
 export { UnionFind }
